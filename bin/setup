@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+default_email=$(git config user.email)
+
+# Prompt the user for an email address
+read -p "Email Address: " -e -i $default_email email
+hostname=$(hostname)
+
+ssh-keygen -t ed25519 -C "$email/$hostname"
+
+echo "Public SSH Key:"
+echo
+cat  ~/.ssh/id_ed25519.pub
+echo 
+
